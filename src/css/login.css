@@ -1,0 +1,24 @@
+header {
+  text-align: center;
+}
+
+i {
+  font-size: 6rem !important;
+}
+
+.text-field {
+  display: block;
+  width: 300px;
+  margin: 20px auto;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
+  margin: auto;
+}
+
+.button-container button {
+  margin: 3px;
+}

@@ -1,0 +1,72 @@
+\documentclass{article}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    urlcolor=blue,
+}
+
+\begin{document}
+
+\title{Bookstore: Initial Report}
+\author{
+Omar Emara (20180364), Mohamed Alkhateb (20180470), \\
+Karim Ashraf (20180424), Mohamed Fathy (20180524), \\
+Mahmoud Mohamed (20180571), Medhat Taha (20180575)
+}
+\maketitle
+
+\begin{abstract}
+This report describes the general plan for the Bookstore project.
+We start by defining the general idea behind the project.
+Then we outline the core functionality that the project should implement.
+Next we list some of the services available in the market that implements the same functionality.
+Lastly we introduce the technology stack of our choice.
+\end{abstract}
+
+\section{Idea}
+
+The \emph{Bookstore} project is an implementation of an online platform providing the service of
+commercial trading of electronic books. It is tailored to authors, publishers, booksellers, and
+customers. The end user can sell and buy books through the platform. Full administrative control
+over the platform is provided.
+
+\section{Functionality}
+
+The platform provides the following functionalities:
+
+\begin{itemize}
+\item Users can register an account using their name, email, and password.
+\item Users can login using their email and password.
+\item Users can browse the available books and add them to their cart.
+\item Users can checkout their cart using their preferred payment method.
+\item Users can view the orders they previously made.
+\item Users can view the customers who ordered their books.
+\item Users can add and upload a book to be sold.
+\item Administrators can view all the registered users.
+\item Administrators can view all the orders in the system.
+\end{itemize}
+
+\section{Market Study}
+
+Similar services are listed below:
+
+\begin{itemize}
+\item \href{https://www.goodreads.com/}{Good Reads}.
+\item \href{https://www.amazon.com/books}{Amazon Books}.
+\item \href{https://bookoutlet.com/}{Book Outlet}.
+\item \href{https://www.bookdepository.com/}{Book Depository}.
+\end{itemize}
+
+\section{Technology Stack}
+
+\begin{itemize}
+\item DBMS : PostgreSQL
+\item GraphQL Server : PostGraphile
+\item Web Server : NGINX
+\item Server-Side Renderer: PHP
+\item GraphQL Client : GraphQL PHP
+\item UI Framework: MDC Web
+\end{itemize}
+
+\end{document}
