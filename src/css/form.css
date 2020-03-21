@@ -19,6 +19,7 @@ i {
   margin: auto;
 }
 
-.button-container button {
-  margin: 3px;
+.error {
+  text-align: center;
+  color: var(--mdc-theme-error);
 }

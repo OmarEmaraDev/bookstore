@@ -1,0 +1,23 @@
+.checkout-container {
+  text-align: center;
+}
+
+.table {
+  margin-top: 3em;
+}
+
+.checkout-button {
+  display: flex;
+  margin: 1em auto;
+}
+
+@media screen and (max-width: 400px) {
+    #paypal-button-container {
+        width: 100%;
+    }
+}
+
+#paypal-button-container {
+  margin: 2em auto;
+  width: 35%;
+}

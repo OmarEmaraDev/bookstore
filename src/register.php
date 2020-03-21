@@ -9,16 +9,13 @@ if (isset($_SESSION['user'])) {
 
 if (!empty($_POST)) {
   if (User::exists($_POST['email'])) {
-    $user = User::fromEmail($_POST['email']);
-    if ($user->passwordMatch($_POST['password'])) {
-      $_SESSION['user'] = $user;
-      header('Location: home.php');
-      exit;
-    } else {
-      header('Location: login.php?invalid_password&email=' . urlencode($_POST['email']), TRUE, 303);
-    }
+    header('Location: register.php?invalid&name='
+      . urlencode($_POST['name']) . '&email=' . urlencode($_POST['email']), TRUE, 303);
   } else {
-    header('Location: login.php?invalid_email&email=' . urlencode($_POST['email']), TRUE, 303);
+    $user = User::fromArray($_POST);
+    $user->register();
+    header('Location: login.php?email=' . urlencode($_POST['email']));
+    exit;
   }
 }
 ?>
@@ -26,7 +23,7 @@ if (!empty($_POST)) {
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Login</title>
+    <title>Register</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet">
     <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
@@ -39,7 +36,13 @@ if (!empty($_POST)) {
       <i class="material-icons">menu_book</i>
       <h1>Bookstore</h1>
     </header>
-    <form method="POST">
+    <form method="post">
+      <div class="mdc-text-field text-field">
+        <input type="text" class="mdc-text-field__input" id="name-input" name="name"
+          value="<?php echo $_GET['name'] ?? '' ?>" required>
+        <label class="mdc-floating-label" for="email-input">Name</label>
+        <div class="mdc-line-ripple"></div>
+      </div>
       <div class="mdc-text-field text-field">
         <input type="email" class="mdc-text-field__input" id="email-input" name="email"
           value="<?php echo $_GET['email'] ?? '' ?>" required>
@@ -52,23 +55,21 @@ if (!empty($_POST)) {
         <div class="mdc-line-ripple"></div>
       </div>
       <div class="button-container">
-        <a href="register.php" class="mdc-button">
+        <a href="login.php" class="mdc-button">
           <div class="mdc-button__ripple"></div>
           <span class="mdc-button__label">
-            Register
+            Login
           </span>
         </a>
         <button class="mdc-button mdc-button--raised">
           <div class="mdc-button__ripple"></div>
           <span class="mdc-button__label">
-            Login
+            Register
           </span>
         </button>
       </div>
-      <?php if (isset($_GET['invalid_email'])) { ?>
-      <h6 class="mdc-typography mdc-typography--overline error">Invalid email.</h6>
-      <?php } elseif (isset($_GET['invalid_password'])) { ?>
-      <h6 class="mdc-typography mdc-typography--overline error">Invalid password.</h6>
+      <?php if (isset($_GET["invalid"])) { ?>
+      <h6 class="mdc-typography mdc-typography--overline error">This email already exists.</h6>
       <?php } ?>
       <script>
         document.querySelectorAll(".text-field").forEach(e => new mdc.textField.MDCTextField(e));
