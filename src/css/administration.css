@@ -1,0 +1,8 @@
+.administration-container {
+  display: flex;
+}
+
+.table {
+  flex-grow: 1;
+  margin: 2em;
+}
