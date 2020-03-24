@@ -72,6 +72,10 @@ if (isset($_SESSION['user'])) {
         <?php endfor; ?>
       </div>
     </div>
+    <a href="add.php" class="mdc-fab fab--absolute" aria-label="Add">
+      <div class="mdc-fab__ripple"></div>
+      <span class="mdc-fab__icon material-icons">add</span>
+    </a>
     <script>
       document.querySelectorAll("button").forEach(e => new mdc.ripple.MDCRipple(e).unbounded = true);
       document.querySelectorAll(".mdc-card__primary-action").forEach(e => new mdc.ripple.MDCRipple(e));

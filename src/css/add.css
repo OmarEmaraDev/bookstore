@@ -1,0 +1,20 @@
+.text-field {
+  display: flex;
+  width: 80%;
+  margin: 20px auto;
+}
+
+.button-container {
+  text-align: end;
+  width: 80%;
+  margin: auto;
+}
+
+.error {
+  text-align: center;
+  color: var(--mdc-theme-error);
+}
+
+#book-selector {
+  padding: 16px;
+}
