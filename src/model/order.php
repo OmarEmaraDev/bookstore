@@ -1,17 +1,23 @@
 <?php
+require_once('model/user.php');
+require_once('model/book.php');
+
 class Order {
-  public string $isbn;
-  public string $email;
+  public Book $book;
+  public User $customer;
   public bool $ordered;
 
-  function __construct(int $isbn, string $email, bool $ordered) {
-    $this->isbn = $isbn;
-    $this->email = $email;
+  function __construct(Book $book, User $customer, bool $ordered) {
+    $this->book = $book;
+    $this->customer = $customer;
     $this->ordered = $ordered;
   }
 
   public function asArray() : array {
-    return (array)$this;
+    $array = (array)$this;
+    $array['book'] = $this->book->isbn;
+    $array['customer'] = $this->customer->email;
+    return $array;
   }
 
   public function exists() : bool {

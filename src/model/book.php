@@ -47,5 +47,18 @@ class Book {
     $result = pg_insert($connection, 'books', $this->asArray());
     pg_close($connection);
   }
+
+  public static function getAllBooks(){
+    $connection = pg_connect('dbname=bookstore');
+    $query = 'SELECT * FROM books;';
+    $result = pg_query($connection, $query);
+    $booksArray = pg_fetch_all($result);
+    pg_close($connection);
+    $books = array();
+    foreach($booksArray as $book) {
+      $books[] = Book::fromArray($book);
+    }
+    return $books;
+  }
 }
 ?>

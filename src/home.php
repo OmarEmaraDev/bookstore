@@ -1,15 +1,16 @@
 <?php
 require_once('model/user.php');
 require_once('model/order.php');
+require_once('model/book.php');
 
 session_start();
 
 if (isset($_SESSION['user'])) {
   $user = $_SESSION['user'];
   if (isset($_GET['checkout_ISBN'])) {
-    $isbn = $_GET['checkout_ISBN'];
-    if (is_numeric($isbn) && strlen($isbn) == 10) {
-      $order = new Order($isbn, $user->email, FALSE);
+    $isbn = str_replace('-', '', $_GET['checkout_ISBN']);
+    if (is_numeric($isbn) && strlen($isbn) == 13) {
+      $order = new Order(Book::fromISBN($isbn), $user, FALSE);
       if (!$order->exists()) {
         $order->submit();
       }
@@ -47,20 +48,20 @@ if (isset($_SESSION['user'])) {
     </header>
     <div class="mdc-top-app-bar--fixed-adjust">
       <div class="card-container">
-        <?php for ($i = 0; $i < 16; $i++): ?>
+        <?php foreach(Book::getAllBooks() as $i => $book) { ?>
         <div class="mdc-card card">
           <div class="mdc-card__primary-action card__primary-action" tabindex="0">
             <div class="mdc-card__media mdc-card__media--16-9" style="background-image: url(http://placekitten.com/1280/720?image=<?php echo $i; ?>);"></div>
             <div class="card__primary">
-              <h2 class="card__title mdc-typography mdc-typography--headline6">Kitty Cat</h2>
-              <h3 class="card__subtitle mdc-typography mdc-typography--subtitle2">by Professor Cat</h3>
+            <h2 class="card__title mdc-typography mdc-typography--headline6"><?php echo $book->title; ?></h2>
+              <h3 class="card__subtitle mdc-typography mdc-typography--subtitle2">by <?php echo $book->author->name; ?></h3>
             </div>
-            <div class="card__secondary mdc-typography mdc-typography--body2">Kitty cats are cute kittens. Kittens are cute kitty cats.</div>
+            <div class="card__secondary mdc-typography mdc-typography--body2"><?php echo $book->description; ?></div>
           </div>
           <div class="mdc-card__actions">
             <div class="mdc-card__action-buttons">
               <form>
-                <button value="<?php echo str_pad('', 10, $i); ?>" name="checkout_ISBN" class="mdc-button mdc-card__action mdc-card__action--button">
+                <button value="<?php echo $book->isbn; ?>" name="checkout_ISBN" class="mdc-button mdc-card__action mdc-card__action--button">
                   <span class="mdc-button__ripple"></span>
                   <i class="material-icons mdc-button__icon" aria-hidden="true">add_shopping_cart</i>
                   <span class="mdc-button__label">Add To Cart</span>
@@ -69,7 +70,7 @@ if (isset($_SESSION['user'])) {
             </div>
           </div>
         </div>
-        <?php endfor; ?>
+        <?php } ?>
       </div>
     </div>
     <a href="add.php" class="mdc-fab fab--absolute" aria-label="Add">
