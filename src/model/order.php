@@ -40,10 +40,13 @@ class Order {
     pg_close($connection);
   }
 
-  public static function getAllOrdersByCustomer(User $customer, bool $ordered) : array {
+  public static function getAllOrders(User $customer = NULL, bool $ordered = TRUE) : array {
     $connection = pg_connect('dbname=bookstore');
-    $ordersArray = pg_select($connection, 'orders',
-      array('customer' => $customer->email, 'ordered' => $ordered));
+    $selectionArray = array('ordered' => $ordered);
+    if (!is_null($customer)) {
+      $selectionArray['customer'] = $customer->email;
+    }
+    $ordersArray = pg_select($connection, 'orders', $selectionArray);
     pg_close($connection);
     $orders = array();
     foreach($ordersArray as $order) {

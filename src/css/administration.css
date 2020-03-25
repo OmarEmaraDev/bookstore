@@ -1,8 +1,9 @@
-.administration-container {
+.table {
   display: flex;
+  margin: 0 4% 3em 4%;
 }
 
-.table {
-  flex-grow: 1;
-  margin: 2em;
+h4 {
+  margin-left: 4%;
+  margin-bottom: 0.5em;
 }

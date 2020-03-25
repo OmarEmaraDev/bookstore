@@ -44,10 +44,10 @@ if (!isset($_SESSION['user'])) {
             </thead>
             <tbody class="mdc-data-table__content">
               <?php $totalPrice = 0; ?>
-              <?php foreach(Order::getAllOrdersByCustomer($_SESSION['user'], FALSE) as $order) { ?>
+              <?php foreach(Order::getAllOrders($_SESSION['user'], FALSE) as $order) { ?>
               <tr class="mdc-data-table__row">
               <td class="mdc-data-table__cell"><?php echo $order->book->title; ?></td>
-                <td class="mdc-data-table__cell mdc-data-table__cell--numeric"><?php echo $order->book->price; ?>$</td>
+              <td class="mdc-data-table__cell mdc-data-table__cell--numeric"><?php echo $order->book->price; ?>$</td>
               </tr>
               <?php $totalPrice += $order->book->price; ?>
               <?php } ?>

@@ -43,16 +43,16 @@ class User {
   }
 
   public static function getAllUsers(){
-    $connection = pg_connect( 'dbname=bookstore' );
-    $query = 'SELECT * FROM users';
+    $connection = pg_connect('dbname=bookstore');
+    $query = 'SELECT * FROM users;';
     $result = pg_query($connection, $query);
-    $result = pg_fetch_all( $result );
+    $usersArray = pg_fetch_all($result);
     pg_close($connection);
-    $array = array();
-    foreach( $result as $value ){
-      $array[] = User::fromArray( $value );
+    $users = array();
+    foreach($usersArray as $user ){
+      $users[] = User::fromArray($user);
     }
-    return $array;
+    return $users;
   }
 }
 ?>
