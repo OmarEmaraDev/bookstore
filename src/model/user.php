@@ -41,5 +41,18 @@ class User {
   public function passwordMatch(string $password) : bool {
     return !strcmp($this->password, $password);
   }
+
+  public static function getAllUsers(){
+    $connection = pg_connect( 'dbname=bookstore' );
+    $query = 'SELECT * FROM users';
+    $result = pg_query($connection, $query);
+    $result = pg_fetch_all( $result );
+    pg_close($connection);
+    $array = array();
+    foreach( $result as $value ){
+      $array[] = User::fromArray( $value );
+    }
+    return $array;
+  }
 }
 ?>

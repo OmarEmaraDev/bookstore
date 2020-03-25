@@ -49,18 +49,12 @@ if (isset($_SESSION['user'])) {
               </tr>
             </thead>
             <tbody class="mdc-data-table__content">
+              <?php foreach(User::getAllUsers() as $value){?>
               <tr class="mdc-data-table__row">
-                <td class="mdc-data-table__cell">Whiskers</td>
-                <td class="mdc-data-table__cell">mail@whiskers.com</td>
+                <td class="mdc-data-table__cell"><?php echo $value->name;?></td>
+                <td class="mdc-data-table__cell"><?php echo $value->email;?></td>
               </tr>
-              <tr class="mdc-data-table__row">
-                <td class="mdc-data-table__cell">Kitty</td>
-                <td class="mdc-data-table__cell">mail@kitty.com</td>
-              </tr>
-              <tr class="mdc-data-table__row">
-                <td class="mdc-data-table__cell">Misty</td>
-                <td class="mdc-data-table__cell">mail@misty.com</td>
-              </tr>
+              <?php } ?>
             </tbody>
           </table>
         </div>
