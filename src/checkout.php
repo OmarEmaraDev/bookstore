@@ -43,18 +43,14 @@ if (!isset($_SESSION['user'])) {
               </tr>
             </thead>
             <tbody class="mdc-data-table__content">
+              <?php $totalPrice = 0; ?>
+              <?php foreach(Order::getAllOrdersByCustomer($_SESSION['user'], FALSE) as $order) { ?>
               <tr class="mdc-data-table__row">
-                <td class="mdc-data-table__cell">Book 1: Something</td>
-                <td class="mdc-data-table__cell mdc-data-table__cell--numeric">24$</td>
+              <td class="mdc-data-table__cell"><?php echo $order->book->title; ?></td>
+                <td class="mdc-data-table__cell mdc-data-table__cell--numeric"><?php echo $order->book->price; ?>$</td>
               </tr>
-              <tr class="mdc-data-table__row">
-                <td class="mdc-data-table__cell">Book 2: Something</td>
-                <td class="mdc-data-table__cell mdc-data-table__cell--numeric">37$</td>
-              </tr>
-              <tr class="mdc-data-table__row">
-                <td class="mdc-data-table__cell">Book 3: Something</td>
-                <td class="mdc-data-table__cell mdc-data-table__cell--numeric">24$</td>
-              </tr>
+              <?php $totalPrice += $order->book->price; ?>
+              <?php } ?>
             </tbody>
           </table>
         </div>
@@ -68,7 +64,7 @@ if (!isset($_SESSION['user'])) {
             return actions.order.create({
               purchase_units: [{
                 amount: {
-                  value: '0.01'
+                value: '<?php echo $totalPrice; ?>'
                 }
               }]
             });

@@ -13,6 +13,13 @@ class Order {
     $this->ordered = $ordered;
   }
 
+  public static function fromArray(array $data) : Order {
+    return new Order(
+      Book::fromISBN($data['book']),
+      User::fromEmail($data['customer']),
+      $data['ordered']);
+  }
+
   public function asArray() : array {
     $array = (array)$this;
     $array['book'] = $this->book->isbn;
@@ -31,6 +38,18 @@ class Order {
     $connection = pg_connect('dbname=bookstore');
     $result = pg_insert($connection, 'orders', $this->asArray());
     pg_close($connection);
+  }
+
+  public static function getAllOrdersByCustomer(User $customer, bool $ordered) : array {
+    $connection = pg_connect('dbname=bookstore');
+    $ordersArray = pg_select($connection, 'orders',
+      array('customer' => $customer->email, 'ordered' => $ordered));
+    pg_close($connection);
+    $orders = array();
+    foreach($ordersArray as $order) {
+      $orders[] = Order::fromArray($order);
+    }
+    return $orders;
   }
 }
 ?>
