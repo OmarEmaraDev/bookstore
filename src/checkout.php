@@ -7,6 +7,8 @@ if (!isset($_SESSION['user'])) {
   header('Location: login.php');
   exit;
 }
+
+$PAGE_TITLE = 'Checkout';
 ?>
 <!doctype html>
 <html lang="en">
@@ -21,17 +23,7 @@ if (!isset($_SESSION['user'])) {
     <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
   </head>
   <body>
-    <header class="mdc-top-app-bar mdc-top-app-bar--fixed">
-      <div class="mdc-top-app-bar__row">
-        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-          <button class="mdc-icon-button material-icons mdc-top-app-bar__navigation-icon--unbounded">menu</button>
-          <span class="mdc-top-app-bar__title">Bookstore</span>
-        </section>
-        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end">
-        <a href="home.php" class="mdc-icon-button material-icons mdc-top-app-bar__action-item--unbounded" aria-label="Home">home</a>
-        </section>
-      </div>
-    </header>
+    <?php require_once('includes/top_app_bar.php'); ?>
     <div class="mdc-top-app-bar--fixed-adjust">
       <div class="checkout-container">
         <div class="mdc-data-table table">
