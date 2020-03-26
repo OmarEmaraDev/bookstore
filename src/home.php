@@ -23,7 +23,9 @@ $PAGE_TITLE = 'Home';
 <html lang="en">
   <head>
     <?php require_once('includes/head.php'); ?>
-    <link href="css/home.css" rel="stylesheet">
+    <style>
+      <?php require_once('includes/css/home.css'); ?>
+    </style>
   </head>
   <body>
     <?php require_once('includes/top_app_bar.php'); ?>

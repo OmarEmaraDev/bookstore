@@ -20,7 +20,9 @@ $PAGE_TITLE = 'Administration';
 <html lang="en">
   <head>
     <?php require_once('includes/head.php'); ?>
-    <link href="css/administration.css" rel="stylesheet">
+    <style>
+      <?php require_once('includes/css/administration.css'); ?>
+    </style>
   </head>
   <body>
     <?php require_once('includes/top_app_bar.php'); ?>

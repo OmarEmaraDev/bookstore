@@ -28,7 +28,9 @@ $PAGE_TITLE = 'Login';
 <html lang="en">
   <head>
     <?php require_once('includes/head.php'); ?>
-    <link href="css/form.css" rel="stylesheet">
+    <style>
+      <?php require_once('includes/css/form.css'); ?>
+    </style>
   </head>
   <body>
     <?php require_once('includes/top_app_bar.php'); ?>
