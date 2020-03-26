@@ -22,14 +22,8 @@ $PAGE_TITLE = 'Home';
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <title>Home - Bookstore</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet">
-    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <?php require_once('includes/head.php'); ?>
     <link href="css/home.css" rel="stylesheet">
-    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
   </head>
   <body>
     <?php require_once('includes/top_app_bar.php'); ?>
