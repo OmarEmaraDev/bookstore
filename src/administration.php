@@ -5,7 +5,7 @@ require_once('model/order.php');
 session_start();
 if (isset($_SESSION['user'])) {
   $user = $_SESSION['user'];
-  if ($user->email != 'admin@admin.admin') {
+  if (!$user->isAdmin()) {
     header('Location: home.php');
     exit;
   }

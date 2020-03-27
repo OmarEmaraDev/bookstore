@@ -48,7 +48,7 @@ class Book {
     pg_close($connection);
   }
 
-  public static function getAllBooks(){
+  public static function getAllBooks() : array {
     $connection = pg_connect('dbname=bookstore');
     $query = 'SELECT * FROM books;';
     $result = pg_query($connection, $query);

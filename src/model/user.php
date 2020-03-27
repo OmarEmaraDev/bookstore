@@ -42,7 +42,7 @@ class User {
     return !strcmp($this->password, $password);
   }
 
-  public static function getAllUsers(){
+  public static function getAllUsers() : array {
     $connection = pg_connect('dbname=bookstore');
     $query = 'SELECT * FROM users;';
     $result = pg_query($connection, $query);
@@ -53,6 +53,10 @@ class User {
       $users[] = User::fromArray($user);
     }
     return $users;
+  }
+
+  public function isAdmin() : bool {
+    return $this->email == 'admin@admin.admin';
   }
 }
 ?>
