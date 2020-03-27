@@ -9,6 +9,7 @@
         <?php if ($_SESSION['user']->isAdmin()) { ?>
         <a href="administration.php" class="mdc-icon-button material-icons mdc-top-app-bar__action-item--unbounded" aria-label="Administration">assessment</a>
         <?php } else { ?>
+        <a href="profile.php" class="mdc-icon-button material-icons mdc-top-app-bar__action-item--unbounded" aria-label="Profile">library_books</a>
         <a href="checkout.php" class="mdc-icon-button material-icons mdc-top-app-bar__action-item--unbounded" aria-label="Checkout">shopping_cart</a>
         <?php } ?>
       <a href="logout.php" class="mdc-icon-button material-icons mdc-top-app-bar__action-item--unbounded" aria-label="Logout">exit_to_app</a>

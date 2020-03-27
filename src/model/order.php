@@ -54,5 +54,18 @@ class Order {
     }
     return $orders;
   }
+
+  public static function getAllSales(User $customer) : array {
+    $connection = pg_connect('dbname=bookstore');
+    $query = 'SELECT * FROM orders, books WHERE book = isbn AND ordered = TRUE AND author = \'' . $customer->email . '\';';
+    $result = pg_query($connection, $query);
+    $ordersArray = pg_fetch_all($result);
+    pg_close($connection);
+    $orders = array();
+    foreach($ordersArray as $order) {
+      $orders[] = Order::fromArray($order);
+    }
+    return $orders;
+  }
 }
 ?>

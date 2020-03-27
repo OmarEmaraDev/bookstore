@@ -60,5 +60,9 @@ class Book {
     }
     return $books;
   }
+
+  public function getDownloadLink() : string {
+    return $_SERVER['DOCUMENT_ROOT'] . '/uploads/' . $this->path;
+  }
 }
 ?>
