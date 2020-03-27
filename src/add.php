@@ -65,7 +65,7 @@ $PAGE_TITLE = 'Add Book';
           <div class="mdc-text-field__ripple"></div>
           <input class="mdc-text-field__input" type="text" aria-labelledby="isbn-input" name="isbn"
             title="ISBN of the book. Example : 9783161484100."
-            value="<?php echo $_GET['isbn'] ?? '' ?>" pattern="[0-9]{13}" required>
+            value="<?php echo $_GET['isbn'] ?? '' ?>" pattern="\d{3}-\d-\d{3}-\d{5}-\d" required>
           <span class="mdc-floating-label" id="isbn-input">ISBN</span>
           <div class="mdc-line-ripple"></div>
         </label>

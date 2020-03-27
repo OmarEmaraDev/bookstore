@@ -2,14 +2,15 @@
 require_once('model/user.php');
 require_once('model/order.php');
 require_once('model/book.php');
+require_once('utils/isbn.php');
 
 session_start();
 
 if (isset($_SESSION['user'])) {
   $user = $_SESSION['user'];
   if (isset($_GET['checkout_ISBN'])) {
-    $isbn = str_replace('-', '', $_GET['checkout_ISBN']);
-    if (is_numeric($isbn) && strlen($isbn) == 13) {
+    $isbn = $_GET['checkout_ISBN'];
+    if (isValidISBN13($isbn)) {
       $order = new Order(Book::fromISBN($isbn), $user, FALSE);
       if (!$order->exists()) {
         $order->submit();
