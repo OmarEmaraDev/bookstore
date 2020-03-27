@@ -62,7 +62,7 @@ class Book {
   }
 
   public function getDownloadLink() : string {
-    return $_SERVER['DOCUMENT_ROOT'] . '/uploads/' . $this->path;
+    return 'uploads/' . $this->isbn . '.pdf';
   }
 }
 ?>

@@ -41,7 +41,8 @@ $PAGE_TITLE = 'Profile';
             <tr class="mdc-data-table__row">
               <td class="mdc-data-table__cell"><?php echo $order->book->title;?></td>
               <td class="mdc-data-table__cell">
-                <a download href="<?php echo $order->book->getDownloadLink();?>" class="mdc-icon-button material-icons">get_app</a>
+                <a download="<?php echo $order->book->path; ?>" href="<?php echo $order->book->getDownloadLink();?>"
+                  class="mdc-icon-button material-icons">get_app</a>
             </td>
             </tr>
             <?php } ?>

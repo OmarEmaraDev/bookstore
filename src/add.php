@@ -18,7 +18,7 @@ if (!empty($_POST)) {
       TRUE, 303);
   } else {
     move_uploaded_file($_FILES['book']['tmp_name'],
-      $_SERVER['DOCUMENT_ROOT'] . '/uploads/' . $_FILES['book']['name']);
+      $_SERVER['DOCUMENT_ROOT'] . '/uploads/' . $_POST['isbn'] . '.pdf');
     $bookArray = $_POST;
     $bookArray['path'] = $_FILES['book']['name'];
     $bookArray['author'] = $_SESSION['user']->email;
