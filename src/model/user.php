@@ -39,7 +39,7 @@ class User {
   }
 
   public function passwordMatch(string $password) : bool {
-    return !strcmp($this->password, $password);
+    return password_verify($password, $this->password);
   }
 
   public static function getAllUsers() : array {

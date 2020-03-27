@@ -12,7 +12,9 @@ if (!empty($_POST)) {
     header('Location: register.php?invalid&name='
       . urlencode($_POST['name']) . '&email=' . urlencode($_POST['email']), TRUE, 303);
   } else {
-    $user = User::fromArray($_POST);
+    $array = $_POST;
+    $array['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $user = User::fromArray($array);
     $user->register();
     header('Location: login.php?email=' . urlencode($_POST['email']));
     exit;
