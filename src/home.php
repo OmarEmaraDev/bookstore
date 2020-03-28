@@ -35,7 +35,7 @@ $PAGE_TITLE = 'Home';
         <?php foreach(Book::getAllBooks() as $i => $book) { ?>
         <div class="mdc-card card">
           <div class="mdc-card__primary-action card__primary-action" tabindex="0">
-            <div class="mdc-card__media mdc-card__media--16-9" style="background-image: url(http://placekitten.com/1280/720?image=<?php echo $i; ?>);"></div>
+            <div class="mdc-card__media mdc-card__media--16-9" style="background-image: url(image.php?isbn=<?php echo $book->isbn; ?>);"></div>
             <div class="card__primary">
             <h2 class="card__title mdc-typography mdc-typography--headline6"><?php echo $book->title; ?></h2>
               <h3 class="card__subtitle mdc-typography mdc-typography--subtitle2">by <?php echo $book->author->name; ?></h3>
