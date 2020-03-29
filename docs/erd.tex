@@ -1,0 +1,37 @@
+\documentclass[tikz, x11names, border = 5mm]{standalone}
+\usetikzlibrary{er}
+
+\tikzset{multi attribute/.style = {attribute, double distance = 1.5pt}}
+\tikzset{derived attribute/.style = {attribute, dashed }}
+\tikzset{total/.style = {double distance = 1.5pt}}
+\tikzset{every entity/.style = {draw = orange, fill = orange!20}}
+\tikzset{every attribute/.style = {draw = MediumPurple1, fill = MediumPurple1!20}}
+\tikzset{every relationship/.style = {draw = Chartreuse2, fill = Chartreuse2!20}}
+\newcommand{\key}[1]{\underline{#1}}
+
+\begin{document}
+\begin{tikzpicture}[node distance = 7em]
+\node[entity] (user) {User};
+\node[attribute] (email) [left of = user] {\key{Email}} edge (user);
+\node[attribute] (name) [right of = user] {Name} edge (user);
+\node[attribute] (password) [above of = user] {Password} edge (user);
+
+\node[entity] (book) [below of = user, yshift = -1cm] {Book};
+\node[attribute] (isbn) [left of = book] {\key{ISBN13}} edge (book);
+\node[attribute] (title) [right of = book] {Title} edge (book);
+\node[attribute] (description) [below of = book] {Description} edge (book);
+\node[attribute] (price) [below left of = book] {Price} edge (book);
+\node[attribute] (path) [below right of = book] {Path} edge (book);
+
+\node[relationship] (buys) [below right of = user] {Buys} edge (user) edge[total] (book);
+\node[relationship] (offers) [below left of = user] {Offers} edge (user) edge[total] (book);
+
+
+\node[entity] (order) [right of = buys] {Order};
+\node[attribute] (book) [right of = order] {\key{Book}} edge (order);
+\node[attribute] (customer) [below of = order] {\key{Customer}} edge (order);
+\node[attribute] (ordered) [below right of = order] {Ordered} edge (order);
+
+\node[relationship] (places) [above of = order, yshift = 1cm] {Places} edge (user) edge[total] (order);
+\end{tikzpicture}
+\end{document}
